@@ -1,5 +1,5 @@
 const router = require('koa-router')()
-const { userAdd } = require('../controllers/user')
+const { userAdd, userDel, userFindAll, userFindOne, userUpdate } = require('../controllers/user')
 
 router.prefix('/users')
 
@@ -12,5 +12,7 @@ router.get('/bar', function (ctx, next) {
 })
 
 router.post('/add', userAdd)
+
+router.get('/list',userFindAll)
 
 module.exports = router

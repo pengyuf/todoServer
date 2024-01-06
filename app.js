@@ -12,6 +12,7 @@ const logger = require('koa-logger')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
+const tasks = require('./routes/tasks')
 
 const mongoConnect = require('./db')
 
@@ -24,7 +25,7 @@ onerror(app)
 app.use(cors())
 
 app.use(bodyparser({
-  enableTypes:['json', 'form', 'text']
+  enableTypes: ['json', 'form', 'text']
 }))
 app.use(json())
 app.use(logger())
@@ -45,6 +46,7 @@ app.use(async (ctx, next) => {
 // routes
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
+app.use(tasks.routes(), tasks.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
